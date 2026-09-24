@@ -24,15 +24,15 @@ const AsciiRipple = ({
     let b1 = new Float32Array(columns * rows);
     let b2 = new Float32Array(columns * rows);
 
-    const handleMouseMove = (e) => {
+    const handleInteraction = (clientX, clientY) => {
       const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
       
       const gridX = Math.floor(x / cellW);
       const gridY = Math.floor(y / cellH);
 
-      // Agitar una brocha ms grande para que el lquido se mueva ms
+      // Agitar una brocha más grande para que el líquido se mueva más
       for (let dy = -2; dy <= 2; dy++) {
         for (let dx = -2; dx <= 2; dx++) {
           const gx = gridX + dx;
@@ -44,14 +44,33 @@ const AsciiRipple = ({
       }
     };
 
-    // Simulamos un movimiento inicial para que no est esttico
+    const handleMouseMove = (e) => {
+      handleInteraction(e.clientX, e.clientY);
+    };
+
+    // Simulamos un movimiento inicial para que no esté estático
     b1[Math.floor(columns/2) + Math.floor(rows/2) * columns] = 20;
 
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('touchmove', (e) => {
-      const touch = e.touches[0];
-      handleMouseMove(touch);
+      if (e.touches.length > 0) {
+        // e.preventDefault(); // Optional: prevent scrolling while touching canvas
+        handleInteraction(e.touches[0].clientX, e.touches[0].clientY);
+      }
     });
+
+    // Auto-ripple effect so it doesn't look dead on mobile
+    const autoRippleInterval = setInterval(() => {
+       const rx = Math.floor(Math.random() * (columns - 4)) + 2;
+       const ry = Math.floor(Math.random() * (rows - 4)) + 2;
+       for (let dy = -1; dy <= 1; dy++) {
+         for (let dx = -1; dx <= 1; dx++) {
+           if (rx+dx > 0 && rx+dx < columns-1 && ry+dy > 0 && ry+dy < rows-1) {
+             b1[(rx+dx) + (ry+dy) * columns] = 10;
+           }
+         }
+       }
+    }, 2000);
 
     let animationFrameId;
 
@@ -119,6 +138,7 @@ const AsciiRipple = ({
     return () => {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
       if (canvas) observer.unobserve(canvas);
+      clearInterval(autoRippleInterval);
       canvas.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
     };
@@ -128,7 +148,7 @@ const AsciiRipple = ({
     <canvas 
       ref={canvasRef} 
       className="w-full h-full cursor-crosshair"
-      style={{ display: 'block' }}
+      style={{ display: 'block', touchAction: 'none' }}
     />
   );
 };

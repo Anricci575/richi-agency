@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import './App.css'
 import WarpText from './components/WarpText'
 import TextType from './components/TextType'
 import StrokeText from './components/StrokeText'
-import PixelSwap from './components/PixelSwap'
-import AsciiRipple from './components/AsciiRipple'
 import { MiniChart, AIPulse, SecurityHash, PaymentStream } from './components/MicroInteractions';
-import { PricingTickets, PricingTicketHorizontal } from './components/PricingTickets';
-import { InventoryPixelCards } from './components/InventoryPixelCards';
-import { ContactTerminal } from './components/ContactTerminal';
-import BorderGlow from './components/BorderGlow';
+
+// Lazy loaded components for better performance
+const AsciiRipple = lazy(() => import('./components/AsciiRipple'));
+const PixelSwap = lazy(() => import('./components/PixelSwap'));
+const BorderGlow = lazy(() => import('./components/BorderGlow'));
+const ContactTerminal = lazy(() => import('./components/ContactTerminal').then(module => ({ default: module.ContactTerminal })));
+const PricingTickets = lazy(() => import('./components/PricingTickets').then(module => ({ default: module.PricingTickets })));
+const InventoryPixelCards = lazy(() => import('./components/InventoryPixelCards').then(module => ({ default: module.InventoryPixelCards })));
 
 function App() {
   const backgroundImages = [
@@ -166,88 +168,90 @@ function App() {
           </div>
 
           {/* Grid de Servicios (Bento Style) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            {/* Servicio 1 */}
-            <BorderGlow className="group" backgroundColor="#09090b" borderRadius={12} colors={['#90CAF9', '#38bdf8', '#c084fc']}>
-              <div className="p-8 h-full flex flex-col">
-                <span className="font-pixel text-primary text-2xl mb-4 block group-hover:translate-x-1 transition-transform">01 //</span>
-                <h3 className="text-2xl font-bold uppercase mb-3">Landing Pages & Webs</h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-6 font-light">
-                  Páginas ultrarrápidas, diseño futurista de alto impacto y arquitectura orientada 100% a la conversión de clientes calificados.
-                </p>
-                <div className="flex gap-2 flex-wrap text-[10px] font-pixel text-primary/80 mt-auto">
-                  <span className="px-2 py-1 bg-primary/10 rounded">REACT 19</span>
-                  <span className="px-2 py-1 bg-primary/10 rounded">TAILWIND</span>
-                  <span className="px-2 py-1 bg-primary/10 rounded">SEO PERFORMANCE</span>
+          <Suspense fallback={<div className="h-64 flex items-center justify-center text-primary font-mono text-sm">CARGANDO MÓDULOS...</div>}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              
+              {/* Servicio 1 */}
+              <BorderGlow className="group" backgroundColor="#09090b" borderRadius={12} colors={['#90CAF9', '#38bdf8', '#c084fc']}>
+                <div className="p-6 md:p-8 h-full flex flex-col">
+                  <span className="font-pixel text-primary text-xl md:text-2xl mb-4 block group-hover:translate-x-1 transition-transform">01 //</span>
+                  <h3 className="text-xl md:text-2xl font-bold uppercase mb-3">Landing Pages & Webs</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                    Páginas ultrarrápidas, diseño futurista de alto impacto y arquitectura orientada 100% a la conversión de clientes calificados.
+                  </p>
+                  <div className="flex gap-2 flex-wrap text-[9px] md:text-[10px] font-pixel text-primary/80 mt-auto">
+                    <span className="px-2 py-1 bg-primary/10 rounded">REACT 19</span>
+                    <span className="px-2 py-1 bg-primary/10 rounded">TAILWIND</span>
+                    <span className="px-2 py-1 bg-primary/10 rounded">SEO PERFORMANCE</span>
+                  </div>
                 </div>
-              </div>
-            </BorderGlow>
+              </BorderGlow>
 
-            {/* Servicio 2 */}
-            <BorderGlow className="group" backgroundColor="#09090b" borderRadius={12} colors={['#f97316', '#fb923c', '#fdba74']} glowColor="25 90 60">
-              <div className="p-8 h-full flex flex-col">
-                <span className="font-pixel text-orange-500 text-2xl mb-4 block group-hover:translate-x-1 transition-transform">02 //</span>
-                <h3 className="text-2xl font-bold uppercase mb-3">Automatizaciones & IA</h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-6 font-light">
-                  Eliminamos tareas repetitivas mediante agentes inteligentes, flujos de trabajo autónomos y conexión de APIs entre tus aplicaciones.
-                </p>
-                <div className="flex gap-2 flex-wrap text-[10px] font-pixel text-orange-500/80 mt-auto">
-                  <span className="px-2 py-1 bg-orange-500/10 rounded">WORKFLOWS</span>
-                  <span className="px-2 py-1 bg-orange-500/10 rounded">AGENTS</span>
-                  <span className="px-2 py-1 bg-orange-500/10 rounded">APIs</span>
+              {/* Servicio 2 */}
+              <BorderGlow className="group" backgroundColor="#09090b" borderRadius={12} colors={['#f97316', '#fb923c', '#fdba74']} glowColor="25 90 60">
+                <div className="p-6 md:p-8 h-full flex flex-col">
+                  <span className="font-pixel text-orange-500 text-xl md:text-2xl mb-4 block group-hover:translate-x-1 transition-transform">02 //</span>
+                  <h3 className="text-xl md:text-2xl font-bold uppercase mb-3">Automatizaciones & IA</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                    Eliminamos tareas repetitivas mediante agentes inteligentes, flujos de trabajo autónomos y conexión de APIs entre tus aplicaciones.
+                  </p>
+                  <div className="flex gap-2 flex-wrap text-[9px] md:text-[10px] font-pixel text-orange-500/80 mt-auto">
+                    <span className="px-2 py-1 bg-orange-500/10 rounded">WORKFLOWS</span>
+                    <span className="px-2 py-1 bg-orange-500/10 rounded">AGENTS</span>
+                    <span className="px-2 py-1 bg-orange-500/10 rounded">APIs</span>
+                  </div>
                 </div>
-              </div>
-            </BorderGlow>
+              </BorderGlow>
 
-            {/* Servicio 3 */}
-            <BorderGlow className="group" backgroundColor="#09090b" borderRadius={12} colors={['#a855f7', '#c084fc', '#d8b4fe']} glowColor="270 90 70">
-              <div className="p-8 h-full flex flex-col">
-                <span className="font-pixel text-purple-400 text-2xl mb-4 block group-hover:translate-x-1 transition-transform">03 //</span>
-                <h3 className="text-2xl font-bold uppercase mb-3">Tiendas Online (E-Commerce)</h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-6 font-light">
-                  Plataformas de venta online blindadas, checkout ultra fluido, integración con múltiples pasarelas de pago y experiencia móvil superior.
-                </p>
-                <div className="flex gap-2 flex-wrap text-[10px] font-pixel text-purple-400/80 mt-auto">
-                  <span className="px-2 py-1 bg-purple-500/10 rounded">PASARELAS</span>
-                  <span className="px-2 py-1 bg-purple-500/10 rounded">CHECKOUT RÁPIDO</span>
-                  <span className="px-2 py-1 bg-purple-500/10 rounded">PWA</span>
+              {/* Servicio 3 */}
+              <BorderGlow className="group" backgroundColor="#09090b" borderRadius={12} colors={['#a855f7', '#c084fc', '#d8b4fe']} glowColor="270 90 70">
+                <div className="p-6 md:p-8 h-full flex flex-col">
+                  <span className="font-pixel text-purple-400 text-xl md:text-2xl mb-4 block group-hover:translate-x-1 transition-transform">03 //</span>
+                  <h3 className="text-xl md:text-2xl font-bold uppercase mb-3">Tiendas Online (E-Commerce)</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                    Plataformas de venta online blindadas, checkout ultra fluido, integración con múltiples pasarelas de pago y experiencia móvil superior.
+                  </p>
+                  <div className="flex gap-2 flex-wrap text-[9px] md:text-[10px] font-pixel text-purple-400/80 mt-auto">
+                    <span className="px-2 py-1 bg-purple-500/10 rounded">PASARELAS</span>
+                    <span className="px-2 py-1 bg-purple-500/10 rounded">CHECKOUT RÁPIDO</span>
+                    <span className="px-2 py-1 bg-purple-500/10 rounded">PWA</span>
+                  </div>
                 </div>
-              </div>
-            </BorderGlow>
+              </BorderGlow>
 
-            {/* Servicio 4 */}
-            <BorderGlow className="lg:col-span-2 group" backgroundColor="#09090b" borderRadius={12} colors={['#90CAF9', '#38bdf8', '#c084fc']}>
-              <div className="p-8 h-full flex flex-col">
-                <span className="font-pixel text-primary text-2xl mb-4 block group-hover:translate-x-1 transition-transform">04 //</span>
-                <h3 className="text-2xl font-bold uppercase mb-3">Sistemas a la Medida & Software</h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-6 font-light">
-                  Desarrollo de herramientas internas, portales para clientes, bases de datos y plataformas operativas diseñadas con base en la lógica exacta de tu negocio.
-                </p>
-                <div className="flex gap-2 flex-wrap text-[10px] font-pixel text-primary/80 mt-auto">
-                  <span className="px-2 py-1 bg-primary/10 rounded">FULL-STACK</span>
-                  <span className="px-2 py-1 bg-primary/10 rounded">CLOUD ARCHITECTURE</span>
-                  <span className="px-2 py-1 bg-primary/10 rounded">ESCALABILIDAD</span>
+              {/* Servicio 4 */}
+              <BorderGlow className="lg:col-span-2 group" backgroundColor="#09090b" borderRadius={12} colors={['#90CAF9', '#38bdf8', '#c084fc']}>
+                <div className="p-6 md:p-8 h-full flex flex-col">
+                  <span className="font-pixel text-primary text-xl md:text-2xl mb-4 block group-hover:translate-x-1 transition-transform">04 //</span>
+                  <h3 className="text-xl md:text-2xl font-bold uppercase mb-3">Sistemas a la Medida & Software</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                    Desarrollo de herramientas internas, portales para clientes, bases de datos y plataformas operativas diseñadas con base en la lógica exacta de tu negocio.
+                  </p>
+                  <div className="flex gap-2 flex-wrap text-[9px] md:text-[10px] font-pixel text-primary/80 mt-auto">
+                    <span className="px-2 py-1 bg-primary/10 rounded">FULL-STACK</span>
+                    <span className="px-2 py-1 bg-primary/10 rounded">CLOUD ARCHITECTURE</span>
+                    <span className="px-2 py-1 bg-primary/10 rounded">ESCALABILIDAD</span>
+                  </div>
                 </div>
-              </div>
-            </BorderGlow>
+              </BorderGlow>
 
-            {/* Servicio 5 */}
-            <BorderGlow className="group" backgroundColor="#09090b" borderRadius={12} colors={['#ffffff', '#e5e7eb', '#9ca3af']} glowColor="0 0 100">
-              <div className="p-8 h-full flex flex-col">
-                <span className="font-pixel text-white text-2xl mb-4 block group-hover:translate-x-1 transition-transform">05 //</span>
-                <h3 className="text-2xl font-bold uppercase mb-3">Sistemas de Inventario</h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-6 font-light">
-                  Monitoreo de stock en tiempo real, trazabilidad de órdenes, reportes analíticos y sincronización multi-sucursal sin fricción.
-                </p>
-                <div className="flex gap-2 flex-wrap text-[10px] font-pixel text-gray-300 mt-auto">
-                  <span className="px-2 py-1 bg-white/10 rounded">STOCK REALTIME</span>
-                  <span className="px-2 py-1 bg-white/10 rounded">DASHBOARDS</span>
+              {/* Servicio 5 */}
+              <BorderGlow className="group" backgroundColor="#09090b" borderRadius={12} colors={['#ffffff', '#e5e7eb', '#9ca3af']} glowColor="0 0 100">
+                <div className="p-6 md:p-8 h-full flex flex-col">
+                  <span className="font-pixel text-white text-xl md:text-2xl mb-4 block group-hover:translate-x-1 transition-transform">05 //</span>
+                  <h3 className="text-xl md:text-2xl font-bold uppercase mb-3">Sistemas de Inventario</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                    Monitoreo de stock en tiempo real, trazabilidad de órdenes, reportes analíticos y sincronización multi-sucursal sin fricción.
+                  </p>
+                  <div className="flex gap-2 flex-wrap text-[9px] md:text-[10px] font-pixel text-gray-300 mt-auto">
+                    <span className="px-2 py-1 bg-white/10 rounded">STOCK REALTIME</span>
+                    <span className="px-2 py-1 bg-white/10 rounded">DASHBOARDS</span>
+                  </div>
                 </div>
-              </div>
-            </BorderGlow>
+              </BorderGlow>
 
-          </div>
+            </div>
+          </Suspense>
 
           {/* UI Arsenal Section */}
           <div className="mt-32 mb-16">
@@ -268,10 +272,12 @@ function App() {
               {/* Card 1: ASCII WebGL (Video) */}
               <div className="group relative border border-white/10 rounded-xl overflow-hidden bg-black aspect-video lg:col-span-2">
                 <div className="absolute inset-0 opacity-60 group-hover:opacity-100 transition-opacity duration-700">
-                  <AsciiRipple columns={50} rows={25} color="#90CAF9" backgroundColor="#000000" />
+                  <Suspense fallback={<div className="h-full w-full flex items-center justify-center text-primary/50 text-xs font-mono">Iniciando WebGL...</div>}>
+                    <AsciiRipple columns={50} rows={25} color="#90CAF9" backgroundColor="#000000" />
+                  </Suspense>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 p-6 md:p-8">
+                <div className="absolute bottom-0 left-0 p-6 md:p-8 pointer-events-none">
                   <span className="bg-primary/20 text-primary border border-primary/30 px-3 py-1 rounded-full text-[10px] font-pixel mb-3 inline-block uppercase tracking-wider">
                     Efecto Cinemático
                   </span>
@@ -363,9 +369,10 @@ function App() {
               </p>
             </div>
 
-            <PricingTickets />
-
-            <PricingTicketHorizontal />
+            <Suspense fallback={<div className="h-64 flex items-center justify-center text-primary font-mono text-sm">CARGANDO PLANES...</div>}>
+              <PricingTickets />
+              <PricingTicketHorizontal />
+            </Suspense>
 
             {/* Inventory Plans Section */}
             <div className="mt-24 mb-16">
@@ -379,7 +386,9 @@ function App() {
                 </p>
               </div>
 
-              <InventoryPixelCards />
+              <Suspense fallback={<div className="h-64 flex items-center justify-center text-emerald-400 font-mono text-sm">CARGANDO MÓDULOS DE INVENTARIO...</div>}>
+                <InventoryPixelCards />
+              </Suspense>
             </div>
 
             {/* Extras Section */}
@@ -409,52 +418,60 @@ function App() {
           {/* Banner Puente al Ecosistema: RICHI Tienda */}
           <div id="ecosistema" className="scroll-mt-20"></div>
           <div id="tienda" className="mt-16 rounded-2xl overflow-hidden border border-primary/30 transition-all duration-300 group cursor-pointer hover:border-primary/60 shadow-[0_0_40px_rgba(144,202,249,0.1)] bg-[#0B0B0E]">
-            <PixelSwap
-              trigger="hover"
-              pixelSize={80}
-              pattern="diagonal"
-              duration={600}
-              pixelDuration={250}
-              aspectRatio="auto"
-              firstContent={
-                <div className="w-full h-full bg-gradient-to-r from-primary/10 via-[#0B0B0E] to-purple-950/20"></div>
-              }
-              secondContent={
-                <div className="w-full h-full bg-primary"></div>
-              }
-            >
-              <div className="w-full h-full p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 transition-opacity duration-300 group-hover:opacity-0 group-hover:pointer-events-none pointer-events-auto">
-                <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/40 bg-primary/10 text-primary font-pixel text-xs uppercase mb-3">
-                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                    Ecosistema RICHI
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-bold uppercase mb-2">¿Buscas Productos y Artículos de la Marca?</h3>
-                  <p className="text-gray-400 text-sm max-w-xl font-light">
-                    Visita el brazo retail de nuestro ecosistema. Explora el catálogo de productos físicos y digitales en nuestra tienda oficial.
-                  </p>
-                </div>
-                <div className="px-8 py-4 rounded-xl border border-primary text-primary font-pixel text-xl uppercase tracking-widest whitespace-nowrap shadow-[0_0_20px_rgba(144,202,249,0.2)]">
-                  IR A RICHI TIENDA &gt;
-                </div>
-              </div>
-
-              <a 
-                href="#tienda" 
-                className="absolute inset-0 z-20 w-full h-full p-8 md:p-12 flex flex-col items-center justify-center gap-4 text-black opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 pointer-events-auto"
+            <Suspense fallback={<div className="h-64 flex items-center justify-center text-primary font-mono text-sm">CARGANDO ECOSISTEMA...</div>}>
+              <PixelSwap
+                trigger="hover"
+                pixelSize={80}
+                pattern="diagonal"
+                duration={600}
+                pixelDuration={250}
+                aspectRatio="auto"
+                firstContent={
+                  <div className="w-full h-full bg-gradient-to-r from-primary/10 via-[#0B0B0E] to-purple-950/20"></div>
+                }
+                secondContent={
+                  <div className="w-full h-full bg-primary"></div>
+                }
               >
-                <h3 className="font-pixel text-4xl md:text-5xl font-bold uppercase tracking-widest animate-pulse">
-                  ACCESO DIRECTO //
-                </h3>
-                <span className="text-xl md:text-2xl font-black tracking-tight">INGRESAR A LA PLATAFORMA RETAIL</span>
-              </a>
-            </PixelSwap>
+                <div className="w-full h-full p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 transition-opacity duration-300 group-hover:opacity-0 group-hover:pointer-events-none pointer-events-auto">
+                  <div>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/40 bg-primary/10 text-primary font-pixel text-xs uppercase mb-3">
+                      <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                      Ecosistema RICHI
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold uppercase mb-2">¿Buscas Productos y Artículos de la Marca?</h3>
+                    <p className="text-gray-400 text-sm max-w-xl font-light">
+                      Visita el brazo retail de nuestro ecosistema. Explora el catálogo de productos físicos y digitales en nuestra tienda oficial.
+                    </p>
+                  </div>
+                  <div className="px-8 py-4 rounded-xl border border-primary text-primary font-pixel text-xl uppercase tracking-widest whitespace-nowrap shadow-[0_0_20px_rgba(144,202,249,0.2)]">
+                    IR A RICHI TIENDA &gt;
+                  </div>
+                </div>
+
+                <a 
+                  href="#tienda" 
+                  className="absolute inset-0 z-20 w-full h-full p-8 md:p-12 flex flex-col items-center justify-center gap-4 text-black opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 pointer-events-auto"
+                >
+                  <span className="font-pixel text-4xl uppercase tracking-widest drop-shadow-md">ENTRAR_</span>
+                  <span className="font-mono text-sm uppercase tracking-widest opacity-80">Redireccionando al nodo comercial</span>
+                </a>
+              </PixelSwap>
+            </Suspense>
           </div>
 
-          {/* Call to Action Final - Terminal de Contacto */}
-          <ContactTerminal />
-          
+          {/* Spacer antes del Contact Terminal */}
+          <div className="h-24"></div>
+
         </section>
+
+        {/* --- FUERA DEL MAIN CONTAINER --- */}
+        {/* Usamos un wrapper full-width para el terminal de contacto */}
+        <div className="w-full border-t border-white/10 bg-[#050508]">
+           <Suspense fallback={<div className="h-64 flex items-center justify-center text-primary font-mono text-sm">INICIANDO TERMINAL DE CONTACTO...</div>}>
+             <ContactTerminal />
+           </Suspense>
+        </div>
 
         {/* Footer */}
         <footer className="p-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs uppercase tracking-[0.3em] text-gray-500 backdrop-blur-md bg-[#0B0B0E]/50 gap-4 mt-auto">

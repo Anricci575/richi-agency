@@ -14,15 +14,15 @@ export const ContactTerminal = () => {
       <div className="max-w-6xl mx-auto px-4 relative z-10 mb-24">
         
         {/* Terminal Header */}
-        <div className="flex flex-col items-center mb-20">
+        <div className="flex flex-col items-center mb-16 md:mb-20">
           <div className="inline-flex items-center gap-3 px-5 py-2 border border-primary/30 bg-primary/5 shadow-[inset_0_0_20px_rgba(144,202,249,0.1)] mb-8">
             <span className="w-2 h-2 bg-primary animate-pulse shadow-[0_0_10px_#90CAF9]"></span>
             <span className="font-mono text-primary text-xs uppercase tracking-[0.3em]">SECURE_CHANNEL_OPEN</span>
           </div>
-          <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 drop-shadow-lg">
+          <h2 className="text-3xl sm:text-4xl md:text-7xl font-black uppercase tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 drop-shadow-lg text-center leading-tight">
             ESTABLECER ENLACE
           </h2>
-          <p className="font-mono text-primary/70 text-xs md:text-sm uppercase tracking-widest max-w-2xl mx-auto text-center">
+          <p className="font-mono text-primary/70 text-xs md:text-sm uppercase tracking-widest max-w-2xl mx-auto text-center px-4">
             &gt; Selecciona un nodo de comunicación para transferir datos de tu proyecto.
           </p>
         </div>
@@ -65,26 +65,26 @@ export const ContactTerminal = () => {
               <div className="flex-grow space-y-4 font-mono">
                 
                 <a href="https://wa.me/584161437190" target="_blank" rel="noreferrer" 
-                   className="block relative bg-primary/5 hover:bg-primary/20 border border-primary/20 hover:border-primary/60 p-5 transition-all duration-300 group/cmd cursor-pointer overflow-hidden">
+                   className="block relative bg-primary/5 hover:bg-primary/20 border border-primary/20 hover:border-primary/60 p-4 md:p-5 transition-all duration-300 group/cmd cursor-pointer overflow-hidden">
                   <div className="absolute left-0 top-0 h-full w-1 bg-primary transform scale-y-0 group-hover/cmd:scale-y-100 transition-transform origin-top"></div>
                   <div className="flex justify-between items-center relative z-10">
-                    <div className="flex items-center gap-4">
-                      <span className="text-primary text-xs opacity-50">C:\&gt;</span>
-                      <span className="text-sm font-bold tracking-widest text-white group-hover/cmd:text-primary transition-colors">CONNECT_WHATSAPP</span>
+                    <div className="flex items-center gap-2 md:gap-4">
+                      <span className="text-primary text-xs opacity-50 hidden sm:inline">C:\&gt;</span>
+                      <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-wider md:tracking-widest text-white group-hover/cmd:text-primary transition-colors">CONNECT_WHATSAPP</span>
                     </div>
-                    <span className="text-xs text-primary/50 group-hover/cmd:text-primary/90 hidden sm:block">+58 416-1437190</span>
+                    <span className="text-[10px] md:text-xs text-primary/50 group-hover/cmd:text-primary/90 hidden sm:block">+58 416-1437190</span>
                   </div>
                 </a>
 
                 <a href="https://www.instagram.com/richy_r.90/" target="_blank" rel="noreferrer" 
-                   className="block relative bg-primary/5 hover:bg-primary/20 border border-primary/20 hover:border-primary/60 p-5 transition-all duration-300 group/cmd cursor-pointer overflow-hidden">
+                   className="block relative bg-primary/5 hover:bg-primary/20 border border-primary/20 hover:border-primary/60 p-4 md:p-5 transition-all duration-300 group/cmd cursor-pointer overflow-hidden">
                   <div className="absolute left-0 top-0 h-full w-1 bg-primary transform scale-y-0 group-hover/cmd:scale-y-100 transition-transform origin-top"></div>
                   <div className="flex justify-between items-center relative z-10">
-                    <div className="flex items-center gap-4">
-                      <span className="text-primary text-xs opacity-50">C:\&gt;</span>
-                      <span className="text-sm font-bold tracking-widest text-white group-hover/cmd:text-primary transition-colors">EXEC_INSTAGRAM</span>
+                    <div className="flex items-center gap-2 md:gap-4">
+                      <span className="text-primary text-xs opacity-50 hidden sm:inline">C:\&gt;</span>
+                      <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-wider md:tracking-widest text-white group-hover/cmd:text-primary transition-colors">EXEC_INSTAGRAM</span>
                     </div>
-                    <span className="text-xs text-primary/50 group-hover/cmd:text-primary/90 hidden sm:block">@richy_r.90</span>
+                    <span className="text-[10px] md:text-xs text-primary/50 group-hover/cmd:text-primary/90 hidden sm:block">@richy_r.90</span>
                   </div>
                 </a>
 
@@ -127,44 +127,44 @@ export const ContactTerminal = () => {
                <div className="flex-grow space-y-4 font-mono">
                  
                  <a href="https://wa.me/584144322229" target="_blank" rel="noreferrer" 
-                    className="block relative bg-purple-500/5 hover:bg-purple-500/20 border border-purple-500/20 hover:border-purple-500/60 p-5 transition-all duration-300 group/cmd cursor-pointer overflow-hidden">
+                    className="block relative bg-purple-500/5 hover:bg-purple-500/20 border border-purple-500/20 hover:border-purple-500/60 p-4 md:p-5 transition-all duration-300 group/cmd cursor-pointer overflow-hidden">
                    <div className="absolute left-0 top-0 h-full w-1 bg-purple-500 transform scale-y-0 group-hover/cmd:scale-y-100 transition-transform origin-top"></div>
                    <div className="flex justify-between items-center relative z-10">
-                     <div className="flex items-center gap-4">
-                       <span className="text-purple-400 text-xs opacity-50">C:\&gt;</span>
-                       <span className="text-sm font-bold tracking-widest text-white group-hover/cmd:text-purple-400 transition-colors">CONNECT_DIRECT</span>
+                     <div className="flex items-center gap-2 md:gap-4">
+                       <span className="text-purple-400 text-xs opacity-50 hidden sm:inline">C:\&gt;</span>
+                       <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-wider md:tracking-widest text-white group-hover/cmd:text-purple-400 transition-colors">CONNECT_DIRECT</span>
                      </div>
-                     <span className="text-xs text-purple-400/50 group-hover/cmd:text-purple-400/90 hidden sm:block">+58 414-4322229</span>
+                     <span className="text-[10px] md:text-xs text-purple-400/50 group-hover/cmd:text-purple-400/90 hidden sm:block">+58 414-4322229</span>
                    </div>
                  </a>
  
-                 <div className="grid grid-cols-2 gap-4">
-                   <a href="https://richi-dev.vercel.app/" target="_blank" rel="noreferrer" 
-                      className="block relative bg-purple-500/5 hover:bg-purple-500/20 border border-purple-500/20 hover:border-purple-500/60 p-4 transition-all duration-300 group/cmd cursor-pointer overflow-hidden text-center">
-                     <div className="absolute bottom-0 left-0 w-full h-1 bg-purple-500 transform scale-x-0 group-hover/cmd:scale-x-100 transition-transform origin-left"></div>
-                     <span className="block text-xs font-bold tracking-widest text-white group-hover/cmd:text-purple-400 mb-2">PORTAFOLIO</span>
-                     <span className="block text-[9px] text-purple-400/50 bg-black/50 py-1 rounded">WEB_VIEW</span>
-                   </a>
-                   
-                   <a href="https://github.com/Anricci575" target="_blank" rel="noreferrer" 
-                      className="block relative bg-white/5 hover:bg-white/10 border border-white/20 hover:border-white/60 p-4 transition-all duration-300 group/cmd cursor-pointer overflow-hidden text-center">
-                     <div className="absolute bottom-0 left-0 w-full h-1 bg-white transform scale-x-0 group-hover/cmd:scale-x-100 transition-transform origin-left"></div>
-                     <span className="block text-xs font-bold tracking-widest text-white group-hover/cmd:text-white mb-2">GITHUB</span>
-                     <span className="block text-[9px] text-white/50 bg-black/50 py-1 rounded">REPO_ACCESS</span>
-                   </a>
-                 </div>
- 
-                 <a href="https://www.instagram.com/andres.ricci.90/" target="_blank" rel="noreferrer" 
-                    className="block relative bg-pink-500/5 hover:bg-pink-500/20 border border-pink-500/20 hover:border-pink-500/60 p-5 transition-all duration-300 group/cmd cursor-pointer overflow-hidden">
-                   <div className="absolute left-0 top-0 h-full w-1 bg-pink-500 transform scale-y-0 group-hover/cmd:scale-y-100 transition-transform origin-top"></div>
-                   <div className="flex justify-between items-center relative z-10">
-                     <div className="flex items-center gap-4">
-                       <span className="text-pink-500 text-xs opacity-50">C:\&gt;</span>
-                       <span className="text-sm font-bold tracking-widest text-white group-hover/cmd:text-pink-400 transition-colors">EXEC_INSTAGRAM</span>
-                     </div>
-                     <span className="text-xs text-pink-500/50 group-hover/cmd:text-pink-400/90 hidden sm:block">@andres.ricci.90</span>
-                   </div>
-                 </a>
+                  <div className="grid grid-cols-2 gap-4">
+                    <a href="https://richi-dev.vercel.app/" target="_blank" rel="noreferrer" 
+                       className="block relative bg-purple-500/5 hover:bg-purple-500/20 border border-purple-500/20 hover:border-purple-500/60 p-4 transition-all duration-300 group/cmd cursor-pointer overflow-hidden text-center">
+                      <div className="absolute bottom-0 left-0 w-full h-1 bg-purple-500 transform scale-x-0 group-hover/cmd:scale-x-100 transition-transform origin-left"></div>
+                      <span className="block text-[10px] md:text-xs font-bold tracking-widest text-white group-hover/cmd:text-purple-400 mb-2">PORTAFOLIO</span>
+                      <span className="block text-[9px] text-purple-400/50 bg-black/50 py-1 rounded">WEB_VIEW</span>
+                    </a>
+                    
+                    <a href="https://github.com/Anricci575" target="_blank" rel="noreferrer" 
+                       className="block relative bg-white/5 hover:bg-white/10 border border-white/20 hover:border-white/60 p-4 transition-all duration-300 group/cmd cursor-pointer overflow-hidden text-center">
+                      <div className="absolute bottom-0 left-0 w-full h-1 bg-white transform scale-x-0 group-hover/cmd:scale-x-100 transition-transform origin-left"></div>
+                      <span className="block text-[10px] md:text-xs font-bold tracking-widest text-white group-hover/cmd:text-white mb-2">GITHUB</span>
+                      <span className="block text-[9px] text-white/50 bg-black/50 py-1 rounded">REPO_ACCESS</span>
+                    </a>
+                  </div>
+  
+                  <a href="https://www.instagram.com/andres.ricci.90/" target="_blank" rel="noreferrer" 
+                     className="block relative bg-pink-500/5 hover:bg-pink-500/20 border border-pink-500/20 hover:border-pink-500/60 p-4 md:p-5 transition-all duration-300 group/cmd cursor-pointer overflow-hidden mt-4">
+                    <div className="absolute left-0 top-0 h-full w-1 bg-pink-500 transform scale-y-0 group-hover/cmd:scale-y-100 transition-transform origin-top"></div>
+                    <div className="flex justify-between items-center relative z-10">
+                      <div className="flex items-center gap-2 md:gap-4">
+                        <span className="text-pink-500 text-xs opacity-50 hidden sm:inline">C:\&gt;</span>
+                        <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-wider md:tracking-widest text-white group-hover/cmd:text-pink-400 transition-colors">EXEC_INSTAGRAM</span>
+                      </div>
+                      <span className="text-[10px] md:text-xs text-pink-500/50 group-hover/cmd:text-pink-400/90 hidden sm:block">@andres.ricci.90</span>
+                    </div>
+                  </a>
  
                </div>
                
