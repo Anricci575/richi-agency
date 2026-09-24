@@ -29,8 +29,11 @@ const AsciiRipple = ({
       const x = clientX - rect.left;
       const y = clientY - rect.top;
       
-      const gridX = Math.floor(x / cellW);
-      const gridY = Math.floor(y / cellH);
+      const currentCellW = width / columns;
+      const currentCellH = height / rows;
+
+      const gridX = Math.floor(x / currentCellW);
+      const gridY = Math.floor(y / currentCellH);
 
       // Agitar una brocha más grande para que el líquido se mueva más
       for (let dy = -2; dy <= 2; dy++) {
@@ -75,10 +78,20 @@ const AsciiRipple = ({
     let animationFrameId;
 
     const render = () => {
+      if (width === 0 || height === 0) {
+        width = canvas.offsetWidth;
+        height = canvas.offsetHeight;
+        canvas.width = width;
+        canvas.height = height;
+      }
+
       ctx.fillStyle = backgroundColor;
       ctx.fillRect(0, 0, width, height);
 
-      ctx.font = `${Math.min(cellW, cellH) * 1.2}px monospace`;
+      const currentCellW = width / columns;
+      const currentCellH = height / rows;
+
+      ctx.font = `${Math.min(currentCellW, currentCellH) * 1.2}px monospace`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
@@ -101,7 +114,7 @@ const AsciiRipple = ({
           let charIdx = Math.floor(val * (chars.length - 1));
           
           if (charIdx > 0) {
-            ctx.fillText(chars[charIdx], x * cellW + cellW/2, y * cellH + cellH/2);
+            ctx.fillText(chars[charIdx], x * currentCellW + currentCellW/2, y * currentCellH + currentCellH/2);
           }
         }
       }
