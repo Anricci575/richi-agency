@@ -11,6 +11,7 @@ const PixelSwap = lazy(() => import('./components/PixelSwap'));
 const BorderGlow = lazy(() => import('./components/BorderGlow'));
 const ContactTerminal = lazy(() => import('./components/ContactTerminal').then(module => ({ default: module.ContactTerminal })));
 const PricingTickets = lazy(() => import('./components/PricingTickets').then(module => ({ default: module.PricingTickets })));
+const PricingTicketHorizontal = lazy(() => import('./components/PricingTickets').then(module => ({ default: module.PricingTicketHorizontal })));
 const InventoryPixelCards = lazy(() => import('./components/InventoryPixelCards').then(module => ({ default: module.InventoryPixelCards })));
 
 function App() {
