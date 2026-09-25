@@ -1,6 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const ContactTerminal = () => {
+  const [selectedPlan, setSelectedPlan] = useState('');
+
+  useEffect(() => {
+    const updatePlan = () => {
+      const params = new URLSearchParams(window.location.search);
+      setSelectedPlan(params.get('plan') || '');
+    };
+    
+    updatePlan();
+    window.addEventListener('popstate', updatePlan);
+    return () => window.removeEventListener('popstate', updatePlan);
+  }, []);
+
+  const getWaMessage = () => {
+    if (selectedPlan) {
+      return encodeURIComponent(`Hola Richi! 🚀 Vengo de tu web y estoy interesado en el plan de "${selectedPlan}". Me gustaría saber más detalles.`);
+    }
+    return encodeURIComponent("Hola Richi! 🚀 Vengo de tu web y me encantaría hablar contigo para un proyecto.");
+  };
+
+  const waLink = `https://wa.me/584144322229?text=${getWaMessage()}`;
+  
+  const handleIgClick = (e) => {
+    if (selectedPlan) {
+      const msg = `Hola Richi! 🚀 Vengo de tu web y estoy interesado en el plan de "${selectedPlan}".`;
+      navigator.clipboard.writeText(msg).catch(() => {});
+      alert("¡Mensaje copiado al portapapeles! Pégalo en el chat de Instagram.");
+    }
+  };
+
   return (
     <div id="contacto" className="mt-32 pt-16 relative scroll-mt-20">
       
@@ -126,7 +156,14 @@ export const ContactTerminal = () => {
                {/* Commands */}
                <div className="flex-grow space-y-4 font-mono">
                  
-                 <a href="https://wa.me/584144322229" target="_blank" rel="noreferrer" 
+                 {selectedPlan && (
+                   <div className="text-[10px] sm:text-xs text-orange-400 mb-4 px-4 py-2 border border-orange-500/30 bg-orange-500/10 animate-pulse">
+                     &gt; PARÁMETRO DETECTADO: PLAN [{selectedPlan}]
+                     <br/>&gt; INICIANDO RESPUESTA AUTOMÁTICA...
+                   </div>
+                 )}
+
+                 <a href={waLink} target="_blank" rel="noreferrer" 
                     className="block relative bg-purple-500/5 hover:bg-purple-500/20 border border-purple-500/20 hover:border-purple-500/60 p-4 md:p-5 transition-all duration-300 group/cmd cursor-pointer overflow-hidden">
                    <div className="absolute left-0 top-0 h-full w-1 bg-purple-500 transform scale-y-0 group-hover/cmd:scale-y-100 transition-transform origin-top"></div>
                    <div className="flex justify-between items-center relative z-10">
@@ -154,7 +191,7 @@ export const ContactTerminal = () => {
                     </a>
                   </div>
   
-                  <a href="https://www.instagram.com/andres.ricci.90/" target="_blank" rel="noreferrer" 
+                  <a href="https://www.instagram.com/andres.ricci.90/" target="_blank" rel="noreferrer" onClick={handleIgClick}
                      className="block relative bg-pink-500/5 hover:bg-pink-500/20 border border-pink-500/20 hover:border-pink-500/60 p-4 md:p-5 transition-all duration-300 group/cmd cursor-pointer overflow-hidden mt-4">
                     <div className="absolute left-0 top-0 h-full w-1 bg-pink-500 transform scale-y-0 group-hover/cmd:scale-y-100 transition-transform origin-top"></div>
                     <div className="flex justify-between items-center relative z-10">

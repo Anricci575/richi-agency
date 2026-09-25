@@ -9,7 +9,12 @@ const Ticket = ({ plan, price, from, to, type, days, features, glow, gradient, i
     setIsTorn(true);
     
     setTimeout(() => {
-      window.location.href = '#contacto';
+      window.history.pushState({}, '', `?plan=${encodeURIComponent(plan)}#contacto`);
+      window.dispatchEvent(new Event('popstate')); // Trigger re-render in ContactTerminal if listening
+      
+      const el = document.getElementById('contacto');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      
       setTimeout(() => setIsTorn(false), 800);
     }, 1200);
   };
@@ -193,7 +198,12 @@ export const PricingTicketHorizontal = () => {
     setIsTorn(true);
     
     setTimeout(() => {
-      window.location.href = '#contacto';
+      window.history.pushState({}, '', `?plan=${encodeURIComponent('Automatización & Bots')}#contacto`);
+      window.dispatchEvent(new Event('popstate'));
+      
+      const el = document.getElementById('contacto');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      
       setTimeout(() => setIsTorn(false), 800);
     }, 1200);
   };
