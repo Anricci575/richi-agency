@@ -16,16 +16,17 @@ export const ContactTerminal = () => {
 
   const getWaMessage = () => {
     if (selectedPlan) {
-      return encodeURIComponent(`Hola Richi! 🚀 Vengo de tu web y estoy interesado en el plan de "${selectedPlan}". Me gustaría saber más detalles.`);
+      return encodeURIComponent(`Hola Richi! Vengo de tu web y estoy interesado en el plan de "${selectedPlan}". Me gustaría saber más detalles.`);
     }
-    return encodeURIComponent("Hola Richi! 🚀 Vengo de tu web y me encantaría hablar contigo para un proyecto.");
+    return encodeURIComponent("Hola Richi! Vengo de tu web y me encantaría hablar con ustedes para un proyecto.");
   };
 
   const waLink = `https://wa.me/584144322229?text=${getWaMessage()}`;
+  const waLinkAgency = `https://wa.me/584161437190?text=${getWaMessage()}`;
   
   const handleIgClick = (e) => {
     if (selectedPlan) {
-      const msg = `Hola Richi! 🚀 Vengo de tu web y estoy interesado en el plan de "${selectedPlan}".`;
+      const msg = `Hola Richi! Vengo de tu web y estoy interesado en el plan de "${selectedPlan}".`;
       navigator.clipboard.writeText(msg).catch(() => {});
       alert("¡Mensaje copiado al portapapeles! Pégalo en el chat de Instagram.");
     }
@@ -94,7 +95,14 @@ export const ContactTerminal = () => {
               {/* Commands */}
               <div className="flex-grow space-y-4 font-mono">
                 
-                <a href="https://wa.me/584161437190" target="_blank" rel="noreferrer" 
+                {selectedPlan && (
+                  <div className="text-[10px] sm:text-xs text-orange-400 mb-4 px-4 py-2 border border-orange-500/30 bg-orange-500/10 animate-pulse">
+                    &gt; PARÁMETRO DETECTADO: PLAN [{selectedPlan}]
+                    <br/>&gt; INICIANDO RESPUESTA AUTOMÁTICA...
+                  </div>
+                )}
+
+                <a href={waLinkAgency} target="_blank" rel="noreferrer" 
                    className="block relative bg-primary/5 hover:bg-primary/20 border border-primary/20 hover:border-primary/60 p-4 md:p-5 transition-all duration-300 group/cmd cursor-pointer overflow-hidden">
                   <div className="absolute left-0 top-0 h-full w-1 bg-primary transform scale-y-0 group-hover/cmd:scale-y-100 transition-transform origin-top"></div>
                   <div className="flex justify-between items-center relative z-10">
@@ -106,7 +114,7 @@ export const ContactTerminal = () => {
                   </div>
                 </a>
 
-                <a href="https://www.instagram.com/richy_r.90/" target="_blank" rel="noreferrer" 
+                <a href="https://www.instagram.com/richy_r.90/" target="_blank" rel="noreferrer" onClick={handleIgClick}
                    className="block relative bg-primary/5 hover:bg-primary/20 border border-primary/20 hover:border-primary/60 p-4 md:p-5 transition-all duration-300 group/cmd cursor-pointer overflow-hidden">
                   <div className="absolute left-0 top-0 h-full w-1 bg-primary transform scale-y-0 group-hover/cmd:scale-y-100 transition-transform origin-top"></div>
                   <div className="flex justify-between items-center relative z-10">
