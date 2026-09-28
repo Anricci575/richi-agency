@@ -114,7 +114,7 @@ export const ContactTerminal = () => {
                   </div>
                 </a>
 
-                <a href="https://www.instagram.com/richy_r.90/" target="_blank" rel="noreferrer" onClick={handleIgClick}
+                <a href="https://www.instagram.com/richi__r.90/" target="_blank" rel="noreferrer" onClick={handleIgClick}
                    className="block relative bg-primary/5 hover:bg-primary/20 border border-primary/20 hover:border-primary/60 p-4 md:p-5 transition-all duration-300 group/cmd cursor-pointer overflow-hidden">
                   <div className="absolute left-0 top-0 h-full w-1 bg-primary transform scale-y-0 group-hover/cmd:scale-y-100 transition-transform origin-top"></div>
                   <div className="flex justify-between items-center relative z-10">
@@ -122,7 +122,7 @@ export const ContactTerminal = () => {
                       <span className="text-primary text-xs opacity-50 hidden sm:inline">C:\&gt;</span>
                       <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-wider md:tracking-widest text-white group-hover/cmd:text-primary transition-colors">EXEC_INSTAGRAM</span>
                     </div>
-                    <span className="text-[10px] md:text-xs text-primary/50 group-hover/cmd:text-primary/90 hidden sm:block">@richy_r.90</span>
+                    <span className="text-[10px] md:text-xs text-primary/50 group-hover/cmd:text-primary/90 hidden sm:block">@richi__r.90</span>
                   </div>
                 </a>
 
