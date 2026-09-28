@@ -392,28 +392,7 @@ function App() {
               </Suspense>
             </div>
 
-            {/* Extras Section */}
-            <div className="mt-8 max-w-6xl mx-auto border border-white/10 rounded-xl p-8 bg-black/40 backdrop-blur-sm">
-              <h4 className="font-pixel text-primary text-xl mb-6">&gt; ADD-ONS DE DESARROLLO WEB //</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-sm text-gray-400">
-                <div className="flex flex-col border-l border-white/10 pl-4 hover:border-primary/50 transition-colors">
-                  <span className="text-white font-bold mb-1">+ Módulo E-Commerce</span> 
-                  <span className="font-pixel text-primary">$250 <span className="text-gray-500">| +5 Días</span></span>
-                </div>
-                <div className="flex flex-col border-l border-white/10 pl-4 hover:border-primary/50 transition-colors">
-                  <span className="text-white font-bold mb-1">+ Integración de Pagos</span> 
-                  <span className="font-pixel text-primary">$100 <span className="text-gray-500">| +2 Días</span></span>
-                </div>
-                <div className="flex flex-col border-l border-white/10 pl-4 hover:border-primary/50 transition-colors">
-                  <span className="text-white font-bold mb-1">+ Auto-responder Web</span> 
-                  <span className="font-pixel text-primary">$40 <span className="text-gray-500">| +2 Días</span></span>
-                </div>
-                <div className="flex flex-col border-l border-white/10 pl-4 hover:border-primary/50 transition-colors">
-                  <span className="text-white font-bold mb-1">+ Página Adicional</span> 
-                  <span className="font-pixel text-primary">$30 <span className="text-gray-500">| +2 Días</span></span>
-                </div>
-              </div>
-            </div>
+
           </div>
 
           {/* Banner Puente al Ecosistema: RICHI Tienda */}
